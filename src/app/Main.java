@@ -5,17 +5,33 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter distance in miles which will be converted into kilometers: ");
-        double miles = scanner.nextDouble();
-        double kilometers = convertMilesToKilometers(miles);
-        printConversionResult(miles, kilometers);
+        System.out.println("Enter numeral distance which you would like to convert: ");
+        double distance = scanner.nextDouble();
+
+        System.out.println("Enter original unit of measurement (miles or kilometers) to convert from:");
+        String unit = scanner.next().toLowerCase();
+
+        double convertedDistance;
+        if (unit.equals("miles")) {
+            convertedDistance = convertMilesToKilometers(distance);
+            printConversionResult(distance, "miles", convertedDistance, "kilometers");
+        } else if (unit.equals("kilometers")) {
+            convertedDistance = convertKilometersToMiles(distance);
+            printConversionResult(distance, "kilometers", convertedDistance, "miles");
+        }
+
+        scanner.close();
     }
 
     private static double convertMilesToKilometers(double miles) {
         return miles * 1.609344;
     }
 
-    private static void printConversionResult(double miles, double kilometers) {
-        System.out.println(miles + " miles = " + kilometers + " kilometers");
+    private static double convertKilometersToMiles(double kilometers) {
+        return kilometers * 0.621371;
+    }
+
+    private static void printConversionResult(double originalDistance, String originalUnit, double convertedDistance, String conversionUnit) {
+        System.out.println(originalDistance + " " + originalUnit + " = " + convertedDistance + " " + conversionUnit);
     }
 }
