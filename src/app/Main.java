@@ -11,11 +11,16 @@ public class Main {
         System.out.println("Enter original unit of measurement (miles or kilometers) to convert from:");
         String unit = scanner.next().toLowerCase();
 
+        while (!unit.equals("miles") && !unit.equals("kilometers")) {
+            System.out.println("Please enter 'miles' or 'kilometers' for your original (non-converted) distance measurement");
+            unit = scanner.next().toLowerCase();
+        }
+
         double convertedDistance;
         if (unit.equals("miles")) {
             convertedDistance = convertMilesToKilometers(distance);
             printConversionResult(distance, "miles", convertedDistance, "kilometers");
-        } else if (unit.equals("kilometers")) {
+        } else {
             convertedDistance = convertKilometersToMiles(distance);
             printConversionResult(distance, "kilometers", convertedDistance, "miles");
         }
