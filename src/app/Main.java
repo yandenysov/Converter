@@ -9,6 +9,7 @@ public class Main {
         double miles = scanner.nextDouble();
         double kilometers = convertMilesToKilometers(miles);
         printConversionResult(miles, kilometers);
+        scanner.close();
     }
 
     private static double convertMilesToKilometers(double miles) {
